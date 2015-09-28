@@ -1,0 +1,121 @@
+@import './BoxShadowHelper';
+@import './material-palette.less';
+
+@border-radius: 0.18em;
+
+body {
+  background-color: #efefef;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+button {
+  .BoxShadowHelper(2);
+  border: none;
+  color: white;
+  background-color: @accentColor;
+  border-radius: @border-radius;
+}
+
+input, button, textarea {
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+#root {
+  width: 100%
+}
+
+.hide {
+  display: none;
+}
+
+.events-section {
+  display: inline-block;
+  background-color: white;
+  .BoxShadowHelper(1);
+  border-radius: @border-radius;
+
+  .events-header {
+    position: relative;
+    background-color: @primaryColor;
+    color: white;
+
+    h4{
+      font-size: 2em;
+      padding: 0.5em 0;
+      margin: 0;
+    }
+
+    .events-action-button {
+      width: 1.6em;
+      height: 1.6em;
+      font-size: 2em;
+      border-radius: 5em;
+      position: absolute;
+      right: 1em;
+      top: 0.26em;
+      padding-bottom: 0.25em;
+    }
+  }
+
+  .add-event {
+    background-color: @lightPrimaryColor;
+    padding: 1em;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+
+    input, textarea {
+      font-size: 1.6em;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid black;
+      height: 1.2em;
+      margin-bottom: 0.8em;
+      &::-webkit-input-placeholder {
+        color:#777777
+      }
+    }
+
+    button {
+      font-size: 1.1em;
+      padding-bottom: 0.2em;
+      align-items: center;
+    }
+
+    .location-input {
+      height: 20em;
+    }
+
+  }
+
+  .event-list {
+    width: 40em;
+    list-style-type: none;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+
+    .event-item {
+      border-bottom: 1px solid @dividerColor;
+      padding: 1em;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    .event-date, .event-text {
+      margin: 0.3em;
+    }
+  }
+
+  .event-filter {
+    padding: 0.5em 0;
+    color: white;
+    background-color: @darkPrimaryColor;
+  }
+}
