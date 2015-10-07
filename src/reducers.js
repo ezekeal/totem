@@ -26,10 +26,10 @@ function eventUI (state = initialEventUI, action) {
   switch (action.type) {
     case HIDE_COMPONENT:
       obj[action.name] = false
-      return {...state, ...{ show: obj } }
+      return {...state, ...{ show: obj }}
     case SHOW_COMPONENT:
       obj[action.name] = true
-      return {...state, ...{ show: obj } }
+      return {...state, ...{ show: obj }}
     default:
       return state
   }
@@ -67,14 +67,10 @@ const initialForm = {
 }
 
 function form (state = initialForm, action) {
-  switch(action.type) {
+  switch (action.type) {
     case UPDATE_FORM:
       var field = {}
-      field[action.field.fieldName] = {
-        value: action.field.value,
-        format: action.field.format,
-        valid: action.field.valid
-      }
+      field[action.field.fieldName] = {...action.field}
       var returnObject = {...state, ...field}
       return returnObject
     default:

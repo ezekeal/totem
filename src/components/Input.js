@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react'
 import Moment from 'moment'
 import GoogleMap from 'react-google-maps/lib/GoogleMap'
 import SearchBox from 'react-google-maps/lib/SearchBox'
+import Marker from 'react-google-maps/lib/Marker'
 
 export default class Input extends Component {
 
@@ -65,19 +66,19 @@ export default class Input extends Component {
 
   handlePlacesChanged () {
     'place changed'
-    const { fieldName } = this.props
+    const { fieldName, onChange } = this.props
 
     var places = this.refs.searchBox.getPlaces()
     var name = places[0].name
-    var latLong = places[0].geometry.location
+    var latlong = places[0].geometry.location
 
     var field = {
       fieldName: fieldName,
       name: name,
-      latLong: latLong
+      latlong: latlong
     }
     console.log(field)
-    this.props.onChange(field)
+    onChange(field)
   }
 
   handleBoundsChanged () {
@@ -99,6 +100,7 @@ export default class Input extends Component {
             className={className} />
         )
       case 'location':
+      console.log('latlong is', this.props.latlong)
         return (
           <div className={className} >
             <GoogleMap
@@ -109,10 +111,9 @@ export default class Input extends Component {
               }}
               ref='map'
               defaultZoom={12}
-              defaultCenter={{lat: 30.253958, lng: -97.763168}}
+              center={this.props.latlong || {lat: 30.253958, lng: -97.763168}}
               onClick={e => console.log('clicked', e)}>
               <SearchBox
-                bounds={this.props.bounds}
                 controlPosition={google.maps.ControlPosition.BOTTOM_CENTER}
                 onPlacesChanged={() => this.handlePlacesChanged()}
                 ref='searchBox'
@@ -121,6 +122,7 @@ export default class Input extends Component {
                   backgroundColor: 'white',
                   border: 'none'
                 }} />
+              <Marker position={this.props.latlong} />
             </GoogleMap>
           </div>
         )
@@ -170,5 +172,6 @@ Input.propTypes = {
   format: PropTypes.string,
   className: PropTypes.string,
   center: PropTypes.node,
-  bounds: PropTypes.node
+  bounds: PropTypes.node,
+  latlong: PropTypes.node
 }

@@ -17,10 +17,9 @@ export default class AddEvent extends Component {
           <Input className='location-input'
             type='location'
             fieldName='location'
-            value={location.value}
-            onChange={onChange}
-            format={location.format}
-            valid={location.valid}/>
+            name={location.name}
+            latlong={location.latlong}
+            onChange={onChange}/>
           <Input className='date-input'
             type='date'
             fieldName='date'
