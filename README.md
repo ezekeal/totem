@@ -1,6 +1,8 @@
 Totem
 =====================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ezekeal/totem.svg)](https://greenkeeper.io/)
+
 Getting Started
 
 ```
